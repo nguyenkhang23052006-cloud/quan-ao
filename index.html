@@ -1,444 +1,1120 @@
-```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DESIGNWEAR - Quần Áo Tự Thiết Kế</title>
 
-    <title>DesignWear - Tự Thiết Kế Áo</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        body {
-            background: #f7f7f7;
-            color: #222;
-        }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fc;
+    color: #17203a;
+}
 
-        /* HEADER */
-        header {
-            background: #111;
-            color: white;
-            padding: 18px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* ================= HEADER ================= */
 
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-        }
+.top-header {
+    height: 100px;
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 0 4%;
+    gap: 30px;
+    border-bottom: 1px solid #eee;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 15px;
-        }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 260px;
+}
 
-        nav a:hover {
-            color: #ffcc00;
-        }
+.logo-icon {
+    width: 58px;
+    height: 58px;
+    background: linear-gradient(135deg, #ed1c32, #17377e);
+    clip-path: polygon(
+        50% 0,
+        90% 22%,
+        90% 78%,
+        50% 100%,
+        10% 78%,
+        10% 22%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
 
-        /* HERO */
-        .hero {
-            background: linear-gradient(135deg, #ffdee9, #b5fffc);
-            text-align: center;
-            padding: 70px 20px;
-        }
+.logo-text {
+    color: #17377e;
+    font-size: 30px;
+    font-weight: 900;
+}
 
-        .hero h1 {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
+.logo-sub {
+    font-size: 8px;
+    color: #777;
+}
 
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
+.top-menu {
+    display: flex;
+    gap: 22px;
+}
 
-        .hero button {
-            padding: 13px 28px;
-            border: none;
-            border-radius: 25px;
-            background: #111;
-            color: white;
-            cursor: pointer;
-            font-size: 16px;
-        }
+.top-menu a {
+    color: #172b67;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
 
-        /* DESIGNER */
-        .designer {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-        }
+.search {
+    margin-left: auto;
+    width: 270px;
+    height: 48px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+}
 
-        .designer h2 {
-            text-align: center;
-            margin-bottom: 35px;
-            font-size: 32px;
-        }
+.search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
 
-        .design-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            background: white;
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-        }
+.search-icon {
+    font-size: 25px;
+}
 
-        /* ÁO */
-        .preview {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 500px;
-            background: #eee;
-            border-radius: 15px;
-        }
+.language {
+    white-space: nowrap;
+    font-weight: bold;
+}
 
-        .shirt {
-            width: 300px;
-            height: 350px;
-            background: white;
-            position: relative;
-            clip-path: polygon(
-                25% 5%,
-                40% 0%,
-                50% 8%,
-                60% 0%,
-                75% 5%,
-                100% 30%,
-                82% 48%,
-                72% 35%,
-                72% 100%,
-                28% 100%,
-                28% 35%,
-                18% 48%,
-                0% 30%
-            );
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.language span {
+    color: red;
+}
 
-        .shirt-text {
-            font-size: 28px;
-            font-weight: bold;
-            text-align: center;
-            max-width: 180px;
-            word-wrap: break-word;
-        }
+.login {
+    white-space: nowrap;
+    color: #172b67;
+    font-weight: bold;
+}
 
-        /* CONTROLS */
-        .controls {
-            padding: 10px;
-        }
+/* ================= NAVBAR ================= */
 
-        .control-group {
-            margin-bottom: 25px;
-        }
+.navbar {
+    height: 55px;
+    background: #172b67;
+    display: flex;
+    align-items: center;
+    padding-left: 4%;
+}
 
-        .control-group label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    height: 55px;
+    padding: 18px 28px;
+}
 
-        input[type="text"],
-        select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 15px;
-        }
+.navbar a:hover {
+    background: #29448e;
+}
 
-        input[type="color"] {
-            width: 60px;
-            height: 40px;
-            border: none;
-            cursor: pointer;
-        }
+.navbar .active {
+    background: #f1263b;
+}
 
-        /* MÀU ÁO */
-        .colors {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
+/* ================= HERO ================= */
 
-        .color {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 2px solid #ddd;
-            cursor: pointer;
-        }
+.hero {
+    height: 510px;
+    overflow: hidden;
+    position: relative;
+    background:
+        radial-gradient(
+            circle at 75% 40%,
+            #0c69df 0%,
+            #0636a9 35%,
+            #031d76 100%
+        );
+    color: white;
+}
 
-        .color:hover {
-            transform: scale(1.1);
-        }
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    right: -200px;
+    top: -300px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.1);
+}
 
-        /* SIZE */
-        .sizes {
-            display: flex;
-            gap: 10px;
-        }
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 800px;
+    height: 160px;
+    left: -300px;
+    bottom: -100px;
+    background: #f3263d;
+    transform: rotate(28deg);
+}
 
-        .size {
-            padding: 10px 18px;
-            border: 1px solid #ccc;
-            background: white;
-            border-radius: 7px;
-            cursor: pointer;
-        }
+.hero-content {
+    width: 92%;
+    max-width: 1250px;
+    height: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
 
-        .size.active {
-            background: #111;
-            color: white;
-        }
+.hero-left {
+    padding-left: 30px;
+}
 
-        /* PRICE */
-        .price {
-            font-size: 25px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
+.hero-tag {
+    display: inline-block;
+    background: white;
+    color: #17377e;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    transform: rotate(-3deg);
+    margin-bottom: 18px;
+}
 
-        .buy-button {
-            width: 100%;
-            padding: 15px;
-            background: #111;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 17px;
-            cursor: pointer;
-        }
+.hero h1 {
+    font-size: 58px;
+    line-height: .98;
+    font-weight: 900;
+    text-transform: uppercase;
+}
 
-        .buy-button:hover {
-            background: #333;
-        }
+.hero h1 span {
+    color: #7edcff;
+}
 
-        /* PRODUCTS */
-        .products {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 20px;
-        }
+.hero-description {
+    margin-top: 20px;
+    max-width: 570px;
+    font-size: 18px;
+    line-height: 1.6;
+}
 
-        .products h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 28px;
+}
 
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
+.btn {
+    padding: 14px 25px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
 
-        .product {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-        }
+.btn-red {
+    background: #f3263d;
+    color: white;
+}
 
-        .product-shirt {
-            width: 150px;
-            height: 180px;
-            margin: auto;
-            background: #ddd;
-            clip-path: polygon(
-                25% 5%,
-                40% 0%,
-                50% 8%,
-                60% 0%,
-                75% 5%,
-                100% 30%,
-                82% 48%,
-                72% 35%,
-                72% 100%,
-                28% 100%,
-                28% 35%,
-                18% 48%,
-                0% 30%
-            );
-        }
+.btn-white {
+    background: white;
+    color: #17377e;
+}
 
-        .product h3 {
-            margin: 15px 0 8px;
-        }
+/* ================= HERO SHIRT ================= */
 
-        /* FOOTER */
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-        }
+.hero-shirt {
+    position: relative;
+    width: 350px;
+    height: 400px;
+    margin: auto;
+    filter: drop-shadow(20px 30px 20px rgba(0,0,0,.3));
+}
 
-        /* MOBILE */
-        @media(max-width: 800px) {
+.shirt-body {
+    position: absolute;
+    width: 230px;
+    height: 315px;
+    left: 60px;
+    top: 45px;
+    background: white;
+    clip-path: polygon(
+        25% 0,
+        40% 8%,
+        50% 15%,
+        60% 8%,
+        75% 0,
+        100% 25%,
+        82% 40%,
+        72% 30%,
+        72% 100%,
+        28% 100%,
+        28% 30%,
+        18% 40%,
+        0 25%
+    );
+}
 
-            header {
-                flex-direction: column;
-                gap: 15px;
-            }
+.sleeve-left,
+.sleeve-right {
+    position: absolute;
+    top: 55px;
+    width: 110px;
+    height: 135px;
+    background: white;
+}
 
-            .hero h1 {
-                font-size: 32px;
-            }
+.sleeve-left {
+    left: 5px;
+    transform: rotate(12deg);
+    clip-path: polygon(
+        30% 0,
+        100% 20%,
+        78% 100%,
+        0 75%
+    );
+}
 
-            .design-box {
-                grid-template-columns: 1fr;
-            }
+.sleeve-right {
+    right: 5px;
+    transform: rotate(-12deg);
+    clip-path: polygon(
+        0 20%,
+        70% 0,
+        100% 75%,
+        22% 100%
+    );
+}
 
-            .product-list {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+.hero-design {
+    position: absolute;
+    z-index: 5;
+    left: 115px;
+    top: 150px;
+    width: 120px;
+    height: 125px;
+    border: 4px solid #17377e;
+    border-radius: 15px;
+    background: rgba(255,255,255,.75);
+    color: #17377e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.hero-design strong {
+    font-size: 30px;
+}
+
+.hero-design small {
+    font-weight: bold;
+}
+
+/* ================= SECTION ================= */
+
+.section {
+    max-width: 1200px;
+    margin: 55px auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    margin-bottom: 25px;
+}
+
+.section-title h2 {
+    font-size: 30px;
+    color: #172b67;
+}
+
+.section-title p {
+    margin-top: 8px;
+    color: #777;
+}
+
+/* ================= CATEGORY ================= */
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.category {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    transition: .25s;
+}
+
+.category:hover {
+    transform: translateY(-7px);
+}
+
+.category-icon {
+    font-size: 70px;
+    height: 110px;
+}
+
+.category h3 {
+    color: #172b67;
+}
+
+/* ================= DESIGNER ================= */
+
+.designer {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 8px 35px rgba(0,0,0,.1);
+}
+
+.designer-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.designer-title h2 {
+    color: #172b67;
+    font-size: 30px;
+}
+
+.designer-badge {
+    background: #edf2ff;
+    color: #17377e;
+    padding: 9px 16px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.designer-grid {
+    display: grid;
+    grid-template-columns: 1.3fr .7fr;
+    gap: 30px;
+}
+
+/* PREVIEW */
+
+.preview {
+    height: 600px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    background:
+        radial-gradient(
+            circle,
+            white 0%,
+            #e9eef7 75%
+        );
+}
+
+#shirtCanvas {
+    width: 100%;
+    height: 100%;
+}
+
+.preview-buttons {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+}
+
+.preview-buttons button {
+    border: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+/* CONTROLS */
+
+.controls {
+    padding: 5px;
+}
+
+.control {
+    margin-bottom: 20px;
+}
+
+.control label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.control input[type="text"],
+.control select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d5dbe6;
+    border-radius: 8px;
+    outline: none;
+}
+
+.upload-box {
+    border: 2px dashed #b8c2d7;
+    padding: 15px;
+    border-radius: 10px;
+    background: #f8faff;
+}
+
+.colors {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.color {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    cursor: pointer;
+}
+
+.color:hover {
+    transform: scale(1.1);
+}
+
+.sizes {
+    display: flex;
+    gap: 8px;
+}
+
+.size {
+    padding: 10px 17px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+}
+
+.size.active {
+    background: #172b67;
+    color: white;
+}
+
+.price {
+    font-size: 25px;
+    color: #172b67;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.cart {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background: #f3263d;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #101d45;
+    color: white;
+    padding: 45px 7%;
+}
+
+.footer-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 35px;
+}
+
+footer h3 {
+    margin-bottom: 15px;
+}
+
+footer p {
+    color: #ccd4e8;
+    line-height: 1.8;
+}
+
+/* ================= FLOATING ================= */
+
+.floating {
+    position: fixed;
+    right: 20px;
+    bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+}
+
+.float {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #f3263d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    cursor: pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1000px) {
+
+    .top-menu {
+        display: none;
+    }
+
+    .top-header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 15px 4%;
+    }
+
+    .search {
+        width: 100%;
+        order: 5;
+        margin: 5px 0;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-left {
+        padding: 40px 10px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero-product {
+        display: none;
+    }
+
+    .categories {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .designer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width:600px) {
+
+    .logo-text {
+        font-size: 23px;
+    }
+
+    .navbar {
+        overflow-x: auto;
+    }
+
+    .navbar a {
+        padding: 18px 15px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+
+    .hero {
+        height: auto;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .categories {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .designer {
+        margin: 30px 10px;
+        padding: 18px;
+    }
+
+    .preview {
+        height: 450px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header>
+<!-- ================= HEADER ================= -->
+
+<header class="top-header">
 
     <div class="logo">
-        DESIGNWEAR
+
+        <div class="logo-icon">
+            DW
+        </div>
+
+        <div>
+            <div class="logo-text">
+                DESIGNWEAR
+            </div>
+
+            <div class="logo-sub">
+                SHOP QUẦN ÁO TỰ THIẾT KẾ
+            </div>
+        </div>
+
     </div>
 
-    <nav>
-        <a href="#">Trang chủ</a>
-        <a href="#designer">Tự thiết kế</a>
-        <a href="#products">Sản phẩm</a>
-        <a href="#contact">Liên hệ</a>
-    </nav>
+    <div class="top-menu">
+
+        <a href="#designer">
+            Trình thiết kế
+        </a>
+
+        <a href="#products">
+            Bộ sưu tập
+        </a>
+
+        <a href="#contact">
+            Hỗ trợ
+        </a>
+
+    </div>
+
+    <div class="search">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Bạn đang tìm gì...">
+
+        <span class="search-icon">
+            🔍
+        </span>
+
+    </div>
+
+    <div class="language">
+        <span>VN</span> | EN
+    </div>
+
+    <div class="login">
+        ◯ Đăng nhập
+    </div>
 
 </header>
 
 
-<!-- HERO -->
+<!-- ================= NAV ================= -->
+
+<nav class="navbar">
+
+    <a href="#" class="active">
+        ● Trang chủ
+    </a>
+
+    <a href="#designer">
+        Tự thiết kế
+    </a>
+
+    <a href="#products">
+        Sản phẩm
+    </a>
+
+    <a href="#designer">
+        Áo thun
+    </a>
+
+    <a href="#designer">
+        Hoodie
+    </a>
+
+    <a href="#designer">
+        Polo
+    </a>
+
+    <a href="#contact">
+        Liên hệ
+    </a>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
 <section class="hero">
 
-    <h1>Tự Thiết Kế Chiếc Áo Của Bạn</h1>
+    <div class="hero-content">
 
-    <p>
-        Chọn màu áo, nhập nội dung và tạo phong cách riêng của bạn.
-    </p>
+        <div class="hero-left">
 
-    <button onclick="scrollToDesigner()">
-        Bắt đầu thiết kế
-    </button>
+            <div class="hero-tag">
+                CUSTOM CLOTHING
+            </div>
 
-</section>
+            <h1>
 
+                TỰ THIẾT KẾ
 
-<!-- DESIGNER -->
-<section class="designer" id="designer">
+                <br>
 
-    <h2>🎨 Thiết kế áo</h2>
+                <span>PHONG CÁCH</span>
 
-    <div class="design-box">
+                <br>
 
-        <!-- PREVIEW -->
-        <div class="preview">
+                CỦA BẠN
 
-            <div class="shirt" id="shirt">
+            </h1>
 
-                <div
-                    class="shirt-text"
-                    id="shirtText">
-                    YOUR DESIGN
-                </div>
+            <p class="hero-description">
+
+                Tạo chiếc áo độc đáo theo ý thích của bạn.
+                Chọn màu áo, tải hình ảnh, thêm chữ và
+                tạo ra sản phẩm mang phong cách riêng.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                    class="btn btn-red"
+                    onclick="goDesigner()">
+
+                    BẮT ĐẦU THIẾT KẾ
+
+                </button>
+
+                <button
+                    class="btn btn-white"
+                    onclick="goProducts()">
+
+                    XEM SẢN PHẨM
+
+                </button>
 
             </div>
 
         </div>
 
 
+        <div class="hero-product">
+
+            <div class="hero-shirt">
+
+                <div class="sleeve-left"></div>
+
+                <div class="sleeve-right"></div>
+
+                <div class="shirt-body"></div>
+
+                <div class="hero-design">
+
+                    <strong>
+                        DW
+                    </strong>
+
+                    <small>
+                        YOUR STYLE
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section
+    class="section"
+    id="products">
+
+    <div class="section-title">
+
+        <h2>
+            Khám phá sản phẩm
+        </h2>
+
+        <p>
+            Chọn sản phẩm để bắt đầu thiết kế
+        </p>
+
+    </div>
+
+
+    <div class="categories">
+
+        <div
+            class="category"
+            onclick="selectProduct('Áo thun')">
+
+            <div class="category-icon">
+                👕
+            </div>
+
+            <h3>
+                Áo thun
+            </h3>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="selectProduct('Hoodie')">
+
+            <div class="category-icon">
+                🧥
+            </div>
+
+            <h3>
+                Hoodie
+            </h3>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="selectProduct('Polo')">
+
+            <div class="category-icon">
+                👔
+            </div>
+
+            <h3>
+                Áo Polo
+            </h3>
+
+        </div>
+
+
+        <div
+            class="category"
+            onclick="selectProduct('Oversize')">
+
+            <div class="category-icon">
+                👚
+            </div>
+
+            <h3>
+                Oversize
+            </h3>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DESIGNER ================= -->
+
+<section
+    class="designer"
+    id="designer">
+
+    <div class="designer-title">
+
+        <div>
+
+            <h2>
+                🎨 TRÌNH THIẾT KẾ ÁO
+            </h2>
+
+            <p style="margin-top:8px;color:#777">
+                Thiết kế sản phẩm theo ý thích của bạn
+            </p>
+
+        </div>
+
+        <div class="designer-badge">
+            THIẾT KẾ ONLINE
+        </div>
+
+    </div>
+
+
+    <div class="designer-grid">
+
+
+        <!-- PREVIEW -->
+
+        <div class="preview">
+
+            <div class="preview-buttons">
+
+                <button onclick="front()">
+                    Mặt trước
+                </button>
+
+                <button onclick="back()">
+                    Mặt sau
+                </button>
+
+                <button onclick="rotate()">
+                    Xoay 360°
+                </button>
+
+            </div>
+
+            <canvas
+                id="shirtCanvas">
+            </canvas>
+
+        </div>
+
+
         <!-- CONTROLS -->
+
         <div class="controls">
 
-            <!-- TEXT -->
-            <div class="control-group">
+
+            <!-- PRODUCT -->
+
+            <div class="control">
 
                 <label>
-                    Nội dung in trên áo
+                    Loại áo
                 </label>
 
-                <input
-                    type="text"
-                    id="textInput"
-                    placeholder="Nhập chữ của bạn..."
-                    maxlength="30">
+                <select id="productType">
+
+                    <option>
+                        Áo thun Basic
+                    </option>
+
+                    <option>
+                        Áo Oversize
+                    </option>
+
+                    <option>
+                        Áo Polo
+                    </option>
+
+                    <option>
+                        Hoodie
+                    </option>
+
+                </select>
 
             </div>
 
 
-            <!-- SHIRT COLOR -->
-            <div class="control-group">
+            <!-- COLOR -->
+
+            <div class="control">
 
                 <label>
-                    Màu áo
+                    🎨 Màu áo
                 </label>
 
                 <div class="colors">
 
                     <div
                         class="color"
-                        style="background:white"
-                        onclick="changeShirtColor('#ffffff')">
+                        style="background:#fff"
+                        onclick="changeColor('#ffffff')">
                     </div>
 
                     <div
                         class="color"
-                        style="background:black"
-                        onclick="changeShirtColor('#000000')">
+                        style="background:#111"
+                        onclick="changeColor('#111111')">
                     </div>
 
                     <div
                         class="color"
-                        style="background:#ff4d6d"
-                        onclick="changeShirtColor('#ff4d6d')">
+                        style="background:#e9334b"
+                        onclick="changeColor('#e9334b')">
                     </div>
 
                     <div
                         class="color"
-                        style="background:#4dabf7"
-                        onclick="changeShirtColor('#4dabf7')">
+                        style="background:#1857c8"
+                        onclick="changeColor('#1857c8')">
                     </div>
 
                     <div
                         class="color"
-                        style="background:#51cf66"
-                        onclick="changeShirtColor('#51cf66')">
+                        style="background:#ffd83d"
+                        onclick="changeColor('#ffd83d')">
                     </div>
 
                     <div
                         class="color"
-                        style="background:#ffd43b"
-                        onclick="changeShirtColor('#ffd43b')">
-                    </div>
-
-                    <div
-                        class="color"
-                        style="background:#9c36b5"
-                        onclick="changeShirtColor('#9c36b5')">
+                        style="background:#55bd68"
+                        onclick="changeColor('#55bd68')">
                     </div>
 
                 </div>
@@ -446,8 +1122,49 @@
             </div>
 
 
+            <!-- IMAGE -->
+
+            <div class="control">
+
+                <label>
+                    🖼️ Tải hình ảnh lên
+                </label>
+
+                <div class="upload-box">
+
+                    <input
+                        type="file"
+                        id="imageUpload"
+                        accept="image/*">
+
+                    <p style="font-size:12px;color:#777;margin-top:8px">
+                        PNG, JPG, WEBP
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TEXT -->
+
+            <div class="control">
+
+                <label>
+                    ✏️ Chữ trên áo
+                </label>
+
+                <input
+                    type="text"
+                    id="shirtText"
+                    placeholder="Ví dụ: DESIGNWEAR">
+
+            </div>
+
+
             <!-- TEXT COLOR -->
-            <div class="control-group">
+
+            <div class="control">
 
                 <label>
                     Màu chữ
@@ -456,42 +1173,48 @@
                 <input
                     type="color"
                     id="textColor"
-                    value="#000000">
+                    value="#17377e">
 
             </div>
 
 
             <!-- SIZE -->
-            <div class="control-group">
+
+            <div class="control">
 
                 <label>
-                    Chọn size
+                    📏 Kích thước
                 </label>
 
                 <div class="sizes">
 
-                    <button class="size"
-                        onclick="selectSize(this)">
+                    <button
+                        class="size"
+                        onclick="chooseSize(this)">
                         S
                     </button>
 
-                    <button class="size"
-                        onclick="selectSize(this)">
+                    <button
+                        class="size active"
+                        onclick="chooseSize(this)">
                         M
                     </button>
 
-                    <button class="size"
-                        onclick="selectSize(this)">
+                    <button
+                        class="size"
+                        onclick="chooseSize(this)">
                         L
                     </button>
 
-                    <button class="size"
-                        onclick="selectSize(this)">
+                    <button
+                        class="size"
+                        onclick="chooseSize(this)">
                         XL
                     </button>
 
-                    <button class="size"
-                        onclick="selectSize(this)">
+                    <button
+                        class="size"
+                        onclick="chooseSize(this)">
                         XXL
                     </button>
 
@@ -501,30 +1224,31 @@
 
 
             <!-- CUSTOMER -->
-            <div class="control-group">
+
+            <div class="control">
 
                 <label>
-                    Tên khách hàng
+                    👤 Tên khách hàng
                 </label>
 
                 <input
                     type="text"
-                    id="customerName"
+                    id="customer"
                     placeholder="Nhập tên của bạn">
 
             </div>
 
 
             <div class="price">
-                Giá: 199.000đ
+                199.000đ
             </div>
 
 
             <button
-                class="buy-button"
-                onclick="addToCart()">
+                class="cart"
+                onclick="addCart()">
 
-                🛒 Thêm vào giỏ hàng
+                🛒 THÊM VÀO GIỎ HÀNG
 
             </button>
 
@@ -535,212 +1259,851 @@
 </section>
 
 
-<!-- PRODUCTS -->
-<section class="products" id="products">
+<!-- ================= FOOTER ================= -->
 
-    <h2>Sản phẩm nổi bật</h2>
+<footer id="contact">
 
-    <div class="product-list">
+    <div class="footer-grid">
 
-        <div class="product">
+        <div>
 
-            <div
-                class="product-shirt"
-                style="background:white">
-            </div>
+            <h3>
+                DESIGNWEAR
+            </h3>
 
-            <h3>Áo Basic Trắng</h3>
-
-            <p>199.000đ</p>
-
-        </div>
-
-
-        <div class="product">
-
-            <div
-                class="product-shirt"
-                style="background:black">
-            </div>
-
-            <h3>Áo Basic Đen</h3>
-
-            <p>199.000đ</p>
+            <p>
+                Nền tảng thiết kế quần áo online.
+                Tạo phong cách riêng của bạn.
+            </p>
 
         </div>
 
 
-        <div class="product">
+        <div>
 
-            <div
-                class="product-shirt"
-                style="background:#ff4d6d">
-            </div>
+            <h3>
+                Sản phẩm
+            </h3>
 
-            <h3>Áo Basic Hồng</h3>
+            <p>
+                Áo thun
+            </p>
 
-            <p>199.000đ</p>
+            <p>
+                Hoodie
+            </p>
+
+            <p>
+                Polo
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Hỗ trợ
+            </h3>
+
+            <p>
+                Hướng dẫn đặt hàng
+            </p>
+
+            <p>
+                Chính sách đổi trả
+            </p>
+
+            <p>
+                Liên hệ
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                Liên hệ
+            </h3>
+
+            <p>
+                ☎ 0287 1000 888
+            </p>
+
+            <p>
+                ✉ support@designwear.vn
+            </p>
+
+            <p>
+                📍 TP. Hồ Chí Minh
+            </p>
 
         </div>
 
     </div>
 
-</section>
-
-
-<!-- FOOTER -->
-<footer id="contact">
-
-    <p>
-        © 2026 DESIGNWEAR - Tự thiết kế phong cách của bạn
-    </p>
-
 </footer>
+
+
+<!-- FLOATING BUTTON -->
+
+<div class="floating">
+
+    <div
+        class="float"
+        onclick="alert('Hotline: 0287 1000 888')">
+
+        ☎
+
+    </div>
+
+    <div
+        class="float"
+        onclick="alert('Xin chào! DESIGNWEAR có thể hỗ trợ bạn.')">
+
+        💬
+
+    </div>
+
+</div>
 
 
 <script>
 
-    // NHẬP CHỮ
-    const textInput =
-        document.getElementById("textInput");
+/* ================= CANVAS ================= */
 
-    const shirtText =
-        document.getElementById("shirtText");
+const canvas =
+    document.getElementById("shirtCanvas");
 
-    textInput.addEventListener("input", function() {
+const ctx =
+    canvas.getContext("2d");
 
-        if (this.value.trim() === "") {
+let shirtColor =
+    "#ffffff";
 
-            shirtText.innerText =
-                "YOUR DESIGN";
+let uploadedImage =
+    null;
 
-        } else {
+let currentSide =
+    "front";
 
-            shirtText.innerText =
-                this.value;
+let rotation =
+    0;
+
+
+/* ================= RESIZE ================= */
+
+function resizeCanvas(){
+
+    const box =
+        canvas.parentElement.getBoundingClientRect();
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+    canvas.width =
+        box.width * dpr;
+
+    canvas.height =
+        box.height * dpr;
+
+    canvas.style.width =
+        box.width + "px";
+
+    canvas.style.height =
+        box.height + "px";
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+    drawShirt();
+
+}
+
+
+/* ================= DRAW SHIRT ================= */
+
+function drawShirt(){
+
+    const w =
+        canvas.clientWidth;
+
+    const h =
+        canvas.clientHeight;
+
+    ctx.clearRect(
+        0,
+        0,
+        w,
+        h
+    );
+
+
+    /* BACKGROUND */
+
+    const bg =
+        ctx.createRadialGradient(
+            w/2,
+            h/2,
+            20,
+            w/2,
+            h/2,
+            Math.max(w,h)/2
+        );
+
+    bg.addColorStop(
+        0,
+        "#ffffff"
+    );
+
+    bg.addColorStop(
+        1,
+        "#e2e8f3"
+    );
+
+    ctx.fillStyle =
+        bg;
+
+    ctx.fillRect(
+        0,
+        0,
+        w,
+        h
+    );
+
+
+    /* SHADOW */
+
+    ctx.save();
+
+    ctx.fillStyle =
+        "rgba(0,0,0,.15)";
+
+    ctx.filter =
+        "blur(15px)";
+
+    ctx.beginPath();
+
+    ctx.ellipse(
+        w/2,
+        h*.82,
+        150,
+        25,
+        0,
+        0,
+        Math.PI*2
+    );
+
+    ctx.fill();
+
+    ctx.restore();
+
+
+    /* SCALE */
+
+    const scale =
+        Math.min(
+            w/480,
+            h/560
+        );
+
+
+    ctx.save();
+
+    ctx.translate(
+        w/2,
+        h/2
+    );
+
+    ctx.scale(
+        scale,
+        scale
+    );
+
+
+    /* LEFT SLEEVE */
+
+    ctx.fillStyle =
+        shirtColor;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        -105,
+        -135
+    );
+
+    ctx.lineTo(
+        -230,
+        -55
+    );
+
+    ctx.lineTo(
+        -180,
+        85
+    );
+
+    ctx.lineTo(
+        -95,
+        35
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /* RIGHT SLEEVE */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        105,
+        -135
+    );
+
+    ctx.lineTo(
+        230,
+        -55
+    );
+
+    ctx.lineTo(
+        180,
+        85
+    );
+
+    ctx.lineTo(
+        95,
+        35
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /* BODY */
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        -105,
+        -140
+    );
+
+    ctx.lineTo(
+        -55,
+        -170
+    );
+
+    ctx.quadraticCurveTo(
+        0,
+        -120,
+        55,
+        -170
+    );
+
+    ctx.lineTo(
+        105,
+        -140
+    );
+
+    ctx.lineTo(
+        90,
+        215
+    );
+
+    ctx.lineTo(
+        -90,
+        215
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /* OUTLINE */
+
+    ctx.strokeStyle =
+        "rgba(0,0,0,.13)";
+
+    ctx.lineWidth =
+        3;
+
+    ctx.stroke();
+
+
+    /* COLLAR */
+
+    ctx.beginPath();
+
+    ctx.arc(
+        0,
+        -143,
+        35,
+        0,
+        Math.PI,
+        true
+    );
+
+    ctx.strokeStyle =
+        "rgba(0,0,0,.2)";
+
+    ctx.lineWidth =
+        9;
+
+    ctx.stroke();
+
+
+    /* DESIGN */
+
+    if(currentSide === "front"){
+
+        if(uploadedImage){
+
+            ctx.save();
+
+            ctx.beginPath();
+
+            ctx.rect(
+                -60,
+                -75,
+                120,
+                105
+            );
+
+            ctx.clip();
+
+            ctx.drawImage(
+                uploadedImage,
+                -60,
+                -75,
+                120,
+                105
+            );
+
+            ctx.restore();
 
         }
 
-    });
-
-
-    // ĐỔI MÀU ÁO
-    function changeShirtColor(color) {
-
-        const shirt =
-            document.getElementById("shirt");
-
-        shirt.style.backgroundColor =
-            color;
-
-        // Nếu áo màu tối thì chữ trắng
-        if (
-            color === "#000000" ||
-            color === "#9c36b5"
-        ) {
-
-            shirtText.style.color =
-                "white";
-
-            document.getElementById("textColor").value =
-                "#ffffff";
-
-        } else {
-
-            shirtText.style.color =
-                "black";
-
-            document.getElementById("textColor").value =
-                "#000000";
-
-        }
-
-    }
-
-
-    // ĐỔI MÀU CHỮ
-    document
-        .getElementById("textColor")
-        .addEventListener("input", function() {
-
-            shirtText.style.color =
-                this.value;
-
-        });
-
-
-    // CHỌN SIZE
-    function selectSize(button) {
-
-        const buttons =
-            document.querySelectorAll(".size");
-
-        buttons.forEach(function(btn) {
-
-            btn.classList.remove("active");
-
-        });
-
-        button.classList.add("active");
-
-    }
-
-
-    // THÊM GIỎ HÀNG
-    function addToCart() {
-
-        const name =
-            document.getElementById("customerName").value;
 
         const text =
-            document.getElementById("textInput").value;
+            document
+            .getElementById("shirtText")
+            .value;
 
-        const activeSize =
-            document.querySelector(".size.active");
 
+        if(text){
 
-        if (name === "") {
+            ctx.fillStyle =
+                document
+                .getElementById("textColor")
+                .value;
 
-            alert("Vui lòng nhập tên khách hàng!");
+            ctx.font =
+                "bold 23px Arial";
 
-            return;
+            ctx.textAlign =
+                "center";
+
+            ctx.fillText(
+                text,
+                0,
+                75
+            );
 
         }
 
+    }
 
-        if (!activeSize) {
+    else{
 
-            alert("Vui lòng chọn size áo!");
+        ctx.fillStyle =
+            "#17377e";
 
-            return;
+        ctx.font =
+            "bold 22px Arial";
 
-        }
+        ctx.textAlign =
+            "center";
 
+        ctx.fillText(
+            "DESIGNWEAR",
+            0,
+            25
+        );
 
-        alert(
-            "Đã thêm vào giỏ hàng!\n\n" +
-            "Khách hàng: " + name +
-            "\nThiết kế: " + text +
-            "\nSize: " + activeSize.innerText +
-            "\nGiá: 199.000đ"
+        ctx.font =
+            "14px Arial";
+
+        ctx.fillText(
+            "YOUR STYLE",
+            0,
+            50
         );
 
     }
 
 
-    // CUỘN ĐẾN KHU VỰC THIẾT KẾ
-    function scrollToDesigner() {
+    ctx.restore();
 
-        document
-            .getElementById("designer")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
+
+    /* ROTATION TEXT */
+
+    if(rotation > 0){
+
+        ctx.fillStyle =
+            "#17377e";
+
+        ctx.font =
+            "bold 14px Arial";
+
+        ctx.textAlign =
+            "center";
+
+        ctx.fillText(
+            "Góc xoay: " +
+            rotation +
+            "°",
+            w/2,
+            h-20
+        );
 
     }
+
+}
+
+
+/* ================= COLOR ================= */
+
+function changeColor(color){
+
+    shirtColor =
+        color;
+
+    drawShirt();
+
+}
+
+
+/* ================= UPLOAD ================= */
+
+document
+.getElementById("imageUpload")
+.addEventListener(
+    "change",
+    function(event){
+
+        const file =
+            event.target.files[0];
+
+        if(!file)
+            return;
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function(e){
+
+                const img =
+                    new Image();
+
+                img.onload =
+                    function(){
+
+                        uploadedImage =
+                            img;
+
+                        drawShirt();
+
+                    };
+
+                img.src =
+                    e.target.result;
+
+            };
+
+
+        reader.readAsDataURL(file);
+
+    }
+);
+
+
+/* ================= TEXT ================= */
+
+document
+.getElementById("shirtText")
+.addEventListener(
+    "input",
+    drawShirt
+);
+
+
+document
+.getElementById("textColor")
+.addEventListener(
+    "input",
+    drawShirt
+);
+
+
+/* ================= FRONT ================= */
+
+function front(){
+
+    currentSide =
+        "front";
+
+    rotation =
+        0;
+
+    drawShirt();
+
+}
+
+
+/* ================= BACK ================= */
+
+function back(){
+
+    currentSide =
+        "back";
+
+    rotation =
+        180;
+
+    drawShirt();
+
+}
+
+
+/* ================= ROTATE ================= */
+
+function rotate(){
+
+    currentSide =
+        "front";
+
+    let angle =
+        0;
+
+
+    const timer =
+        setInterval(
+            function(){
+
+                angle += 10;
+
+                rotation =
+                    angle;
+
+                drawShirt();
+
+
+                if(angle >= 360){
+
+                    clearInterval(
+                        timer
+                    );
+
+                    rotation =
+                        0;
+
+                    drawShirt();
+
+                }
+
+            },
+            30
+        );
+
+}
+
+
+/* ================= SIZE ================= */
+
+function chooseSize(button){
+
+    document
+    .querySelectorAll(".size")
+    .forEach(
+        function(btn){
+
+            btn.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+}
+
+
+/* ================= PRODUCT ================= */
+
+function selectProduct(product){
+
+    const select =
+        document.getElementById(
+            "productType"
+        );
+
+
+    if(product === "Áo thun"){
+        select.value =
+            "Áo thun Basic";
+    }
+
+    if(product === "Hoodie"){
+        select.value =
+            "Hoodie";
+    }
+
+    if(product === "Polo"){
+        select.value =
+            "Áo Polo";
+    }
+
+    if(product === "Oversize"){
+        select.value =
+            "Áo Oversize";
+    }
+
+
+    goDesigner();
+
+}
+
+
+/* ================= BUTTON ================= */
+
+function goDesigner(){
+
+    document
+    .getElementById("designer")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+function goProducts(){
+
+    document
+    .getElementById("products")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ================= CART ================= */
+
+function addCart(){
+
+    const customer =
+        document
+        .getElementById("customer")
+        .value
+        .trim();
+
+
+    const size =
+        document
+        .querySelector(
+            ".size.active"
+        )
+        .innerText;
+
+
+    if(!customer){
+
+        alert(
+            "Vui lòng nhập tên khách hàng!"
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "ĐÃ THÊM VÀO GIỎ HÀNG!\n\n" +
+
+        "Khách hàng: " +
+        customer +
+
+        "\nSản phẩm: " +
+        document
+        .getElementById("productType")
+        .value +
+
+        "\nSize: " +
+        size +
+
+        "\nGiá: 199.000đ"
+    );
+
+}
+
+
+/* ================= SEARCH ================= */
+
+document
+.getElementById("search")
+.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Enter"){
+
+            const keyword =
+                this.value.trim();
+
+            if(keyword){
+
+                alert(
+                    "Bạn đang tìm kiếm: " +
+                    keyword
+                );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* ================= START ================= */
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+resizeCanvas();
 
 </script>
 
 </body>
 </html>
-```
