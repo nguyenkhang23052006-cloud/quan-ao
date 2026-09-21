@@ -1,224 +1,1110 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesignWear 3D - Tự Thiết Kế Áo</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f4f4f4;color:#222}
-header{height:70px;background:#111;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 7%}
-.logo{font-size:25px;font-weight:bold}
-nav a{color:#fff;text-decoration:none;margin-left:25px}
-.hero{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#ffd6e7,#c9f7ff)}
-.hero h1{font-size:40px;margin-bottom:10px}.hero p{color:#555}
-.designer{max-width:1250px;margin:40px auto;padding:20px}
-.designer h2{text-align:center;margin-bottom:30px}
-.designer-box{display:grid;grid-template-columns:1.3fr .7fr;gap:30px}
-.viewer{height:650px;background:#e9e9e9;border-radius:20px;position:relative;overflow:hidden;box-shadow:0 5px 25px rgba(0,0,0,.1)}
-#canvas3d{width:100%;height:100%;display:block}
-.viewer-info{position:absolute;left:20px;bottom:20px;background:rgba(255,255,255,.9);padding:10px 15px;border-radius:10px;font-size:13px}
-.view-buttons{position:absolute;top:20px;left:20px;display:flex;gap:8px;flex-wrap:wrap}
-.view-buttons button{border:none;padding:10px 14px;background:#fff;border-radius:8px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.1)}
-.view-buttons button:hover{background:#111;color:#fff}
-.controls{background:#fff;padding:25px;border-radius:20px;box-shadow:0 5px 25px rgba(0,0,0,.08)}
-.group{margin-bottom:25px}.group label{display:block;font-weight:bold;margin-bottom:10px}
-input[type=text]{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px}
-input[type=file]{width:100%}input[type=color]{width:60px;height:40px;border:none;cursor:pointer}
-.colors{display:flex;gap:10px;flex-wrap:wrap}.color{width:35px;height:35px;border-radius:50%;border:2px solid #ccc;cursor:pointer}.color:hover{transform:scale(1.1)}
-.sizes{display:flex;gap:8px;flex-wrap:wrap}.size{padding:10px 17px;border:1px solid #ccc;background:#fff;border-radius:7px;cursor:pointer}.size.active{background:#111;color:#fff}
-.price{font-size:24px;font-weight:bold;margin:20px 0}.cart-btn{width:100%;padding:15px;background:#111;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer}.cart-btn:hover{background:#333}
-.remove-image{margin-top:10px;border:none;background:#e63946;color:#fff;padding:9px 12px;border-radius:7px;cursor:pointer}
-.hint{font-size:13px;color:#666;margin-top:8px;line-height:1.5}
-footer{background:#111;color:#fff;text-align:center;padding:30px;margin-top:50px}
-@media(max-width:900px){.designer-box{grid-template-columns:1fr}.viewer{height:500px}header{padding:0 20px}nav{display:none}.hero h1{font-size:30px}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DesignWear 3D - Tự Thiết Kế Áo</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        header {
+            height: 70px;
+            background: #111;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #ffd6e7, #c9f7ff);
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #555;
+        }
+
+        .designer {
+            max-width: 1250px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .designer h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .designer-box {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 30px;
+        }
+
+        /* =========================
+           KHUNG 3D
+        ========================= */
+
+        .viewer {
+            height: 650px;
+            background: #e9e9e9;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,.1);
+        }
+
+        #canvas3d {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .viewer-info {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            background: rgba(255,255,255,.9);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 13px;
+        }
+
+        .view-buttons {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .view-buttons button {
+            border: none;
+            padding: 10px 14px;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        }
+
+        .view-buttons button:hover {
+            background: #111;
+            color: white;
+        }
+
+        /* =========================
+           CONTROL
+        ========================= */
+
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.08);
+        }
+
+        .group {
+            margin-bottom: 25px;
+        }
+
+        .group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+        }
+
+        input[type="color"] {
+            width: 60px;
+            height: 40px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .colors {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .color {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            cursor: pointer;
+        }
+
+        .color:hover {
+            transform: scale(1.1);
+        }
+
+        .sizes {
+            display: flex;
+            gap: 8px;
+        }
+
+        .size {
+            padding: 10px 17px;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .size.active {
+            background: #111;
+            color: white;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .cart-btn {
+            width: 100%;
+            padding: 15px;
+            background: #111;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .cart-btn:hover {
+            background: #333;
+        }
+
+        .remove-image {
+            margin-top: 10px;
+            border: none;
+            background: #e63946;
+            color: white;
+            padding: 9px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        @media(max-width: 900px) {
+
+            .designer-box {
+                grid-template-columns: 1fr;
+            }
+
+            .viewer {
+                height: 500px;
+            }
+
+            header {
+                padding: 0 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
 </head>
+
 <body>
+
 <header>
-<div class="logo">DESIGNWEAR</div>
-<nav><a href="#">Trang chủ</a><a href="#designer">Thiết kế</a><a href="#contact">Liên hệ</a></nav>
+
+    <div class="logo">
+        DESIGNWEAR
+    </div>
+
+    <nav>
+        <a href="#">Trang chủ</a>
+        <a href="#designer">Thiết kế</a>
+        <a href="#contact">Liên hệ</a>
+    </nav>
+
 </header>
 
+
 <section class="hero">
-<h1>Tự Thiết Kế Áo 3D</h1>
-<p>Upload hình ảnh, thêm chữ và xoay áo 360° để xem thiết kế.</p>
+
+    <h1>Tự Thiết Kế Áo 3D</h1>
+
+    <p>
+        Upload hình ảnh, thêm chữ và xoay áo 360° để xem thiết kế.
+    </p>
+
 </section>
+
 
 <section class="designer" id="designer">
-<h2>🎨 Trình thiết kế áo</h2>
-<div class="designer-box">
-<div class="viewer">
-<canvas id="canvas3d"></canvas>
-<div class="view-buttons">
-<button onclick="frontView()">Mặt trước</button>
-<button onclick="backView()">Mặt sau</button>
-<button onclick="resetView()">Xoay lại</button>
-</div>
-<div class="viewer-info">🖱️ Kéo chuột để xoay áo 3D</div>
-</div>
 
-<div class="controls">
-<div class="group">
-<label>🎨 Màu áo</label>
-<div class="colors">
-<div class="color" style="background:#fff" onclick="changeShirtColor('#ffffff')"></div>
-<div class="color" style="background:#000" onclick="changeShirtColor('#000000')"></div>
-<div class="color" style="background:#ff4d6d" onclick="changeShirtColor('#ff4d6d')"></div>
-<div class="color" style="background:#4dabf7" onclick="changeShirtColor('#4dabf7')"></div>
-<div class="color" style="background:#51cf66" onclick="changeShirtColor('#51cf66')"></div>
-<div class="color" style="background:#ffd43b" onclick="changeShirtColor('#ffd43b')"></div>
-</div>
-</div>
+    <h2>🎨 Trình thiết kế áo</h2>
 
-<div class="group">
-<label>🖼️ Thêm hình ảnh của bạn</label>
-<input type="file" id="imageUpload" accept="image/*">
-<button class="remove-image" onclick="removeImage()">Xóa hình ảnh</button>
-<p class="hint">Ảnh sẽ xuất hiện ở mặt trước áo. Bạn có thể đổi góc nhìn bằng chuột.</p>
-</div>
+    <div class="designer-box">
 
-<div class="group">
-<label>✏️ Nội dung chữ</label>
-<input type="text" id="textInput" placeholder="Nhập chữ muốn in trên áo">
-</div>
 
-<div class="group">
-<label>Màu chữ</label>
-<input type="color" id="textColor" value="#000000">
-</div>
+        <!-- =====================
+             3D VIEWER
+        ====================== -->
 
-<div class="group">
-<label>📏 Chọn size</label>
-<div class="sizes">
-<button class="size" onclick="selectSize(this)">S</button>
-<button class="size" onclick="selectSize(this)">M</button>
-<button class="size" onclick="selectSize(this)">L</button>
-<button class="size" onclick="selectSize(this)">XL</button>
-<button class="size" onclick="selectSize(this)">XXL</button>
-</div>
-</div>
+        <div class="viewer">
 
-<div class="group">
-<label>👤 Tên khách hàng</label>
-<input type="text" id="customerName" placeholder="Nhập tên">
-</div>
+            <canvas id="canvas3d"></canvas>
 
-<div class="price">199.000đ</div>
-<button class="cart-btn" onclick="addCart()">🛒 Thêm vào giỏ hàng</button>
-</div>
-</div>
+            <div class="view-buttons">
+
+                <button onclick="frontView()">
+                    Mặt trước
+                </button>
+
+                <button onclick="backView()">
+                    Mặt sau
+                </button>
+
+                <button onclick="resetView()">
+                    Xoay lại
+                </button>
+
+            </div>
+
+            <div class="viewer-info">
+                🖱️ Kéo chuột để xoay áo
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             CONTROL PANEL
+        ====================== -->
+
+        <div class="controls">
+
+
+            <!-- MÀU ÁO -->
+
+            <div class="group">
+
+                <label>
+                    🎨 Màu áo
+                </label>
+
+                <div class="colors">
+
+                    <div
+                        class="color"
+                        style="background:#ffffff"
+                        onclick="changeShirtColor('#ffffff')">
+                    </div>
+
+                    <div
+                        class="color"
+                        style="background:#000000"
+                        onclick="changeShirtColor('#000000')">
+                    </div>
+
+                    <div
+                        class="color"
+                        style="background:#ff4d6d"
+                        onclick="changeShirtColor('#ff4d6d')">
+                    </div>
+
+                    <div
+                        class="color"
+                        style="background:#4dabf7"
+                        onclick="changeShirtColor('#4dabf7')">
+                    </div>
+
+                    <div
+                        class="color"
+                        style="background:#51cf66"
+                        onclick="changeShirtColor('#51cf66')">
+                    </div>
+
+                    <div
+                        class="color"
+                        style="background:#ffd43b"
+                        onclick="changeShirtColor('#ffd43b')">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- UPLOAD ẢNH -->
+
+            <div class="group">
+
+                <label>
+                    🖼️ Thêm hình ảnh
+                </label>
+
+                <input
+                    type="file"
+                    id="imageUpload"
+                    accept="image/*">
+
+                <button
+                    class="remove-image"
+                    onclick="removeImage()">
+
+                    Xóa hình ảnh
+
+                </button>
+
+            </div>
+
+
+            <!-- THÊM CHỮ -->
+
+            <div class="group">
+
+                <label>
+                    ✏️ Nội dung chữ
+                </label>
+
+                <input
+                    type="text"
+                    id="textInput"
+                    placeholder="Nhập chữ muốn in trên áo">
+
+            </div>
+
+
+            <!-- MÀU CHỮ -->
+
+            <div class="group">
+
+                <label>
+                    Màu chữ
+                </label>
+
+                <input
+                    type="color"
+                    id="textColor"
+                    value="#000000">
+
+            </div>
+
+
+            <!-- SIZE -->
+
+            <div class="group">
+
+                <label>
+                    📏 Chọn size
+                </label>
+
+                <div class="sizes">
+
+                    <button
+                        class="size"
+                        onclick="selectSize(this)">
+                        S
+                    </button>
+
+                    <button
+                        class="size"
+                        onclick="selectSize(this)">
+                        M
+                    </button>
+
+                    <button
+                        class="size"
+                        onclick="selectSize(this)">
+                        L
+                    </button>
+
+                    <button
+                        class="size"
+                        onclick="selectSize(this)">
+                        XL
+                    </button>
+
+                    <button
+                        class="size"
+                        onclick="selectSize(this)">
+                        XXL
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TÊN -->
+
+            <div class="group">
+
+                <label>
+                    👤 Tên khách hàng
+                </label>
+
+                <input
+                    type="text"
+                    id="customerName"
+                    placeholder="Nhập tên">
+
+            </div>
+
+
+            <div class="price">
+                199.000đ
+            </div>
+
+
+            <button
+                class="cart-btn"
+                onclick="addCart()">
+
+                🛒 Thêm vào giỏ hàng
+
+            </button>
+
+        </div>
+
+    </div>
+
 </section>
 
-<footer id="contact">© 2026 DESIGNWEAR - Custom Clothing</footer>
+
+<footer id="contact">
+
+    © 2026 DESIGNWEAR - Custom Clothing
+
+</footer>
+
+
+<!-- THREE.JS -->
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+
+
 <script>
-const canvas=document.getElementById("canvas3d");
-const scene=new THREE.Scene();
-scene.background=new THREE.Color(0xe9e9e9);
-const camera=new THREE.PerspectiveCamera(45,1,0.1,100);
-camera.position.set(0,1,5);
 
-const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
-renderer.setPixelRatio(window.devicePixelRatio);
+    /* =========================
+       THREE.JS
+    ========================= */
 
-function resize(){
- const w=canvas.clientWidth,h=canvas.clientHeight;
- renderer.setSize(w,h,false);
- camera.aspect=w/h;
- camera.updateProjectionMatrix();
-}
-resize();
+    const canvas =
+        document.getElementById("canvas3d");
 
-scene.add(new THREE.AmbientLight(0xffffff,2));
-const light=new THREE.DirectionalLight(0xffffff,3);
-light.position.set(3,5,5);
-scene.add(light);
+    const scene =
+        new THREE.Scene();
 
-const shirtGroup=new THREE.Group();
-scene.add(shirtGroup);
+    scene.background =
+        new THREE.Color(0xe9e9e9);
 
-const material=new THREE.MeshStandardMaterial({color:0xffffff,roughness:.8});
-const body=new THREE.Mesh(new THREE.BoxGeometry(2.5,3,.45),material);
-shirtGroup.add(body);
 
-const sleeveGeo=new THREE.BoxGeometry(1.2,1.6,.45);
-const left=new THREE.Mesh(sleeveGeo,material);
-left.position.set(-1.65,.55,0);left.rotation.z=-.35;shirtGroup.add(left);
-const right=new THREE.Mesh(sleeveGeo,material);
-right.position.set(1.65,.55,0);right.rotation.z=.35;shirtGroup.add(right);
+    const camera =
+        new THREE.PerspectiveCamera(
+            45,
+            canvas.clientWidth / canvas.clientHeight,
+            0.1,
+            100
+        );
 
-const collar=new THREE.Mesh(
- new THREE.TorusGeometry(.38,.08,16,32),
- new THREE.MeshStandardMaterial({color:0xdddddd})
-);
-collar.rotation.x=Math.PI/2;collar.position.set(0,1.2,.25);shirtGroup.add(collar);
+    camera.position.set(
+        0,
+        1,
+        5
+    );
 
-const controls=new THREE.OrbitControls(camera,renderer.domElement);
-controls.enableDamping=true;controls.enablePan=false;
-controls.minDistance=3;controls.maxDistance=8;
 
-let designImage=null;
+    const renderer =
+        new THREE.WebGLRenderer({
+            canvas: canvas,
+            antialias: true
+        });
 
-function updateDesign(){
- const c=document.createElement("canvas");
- c.width=1024;c.height=1024;
- const ctx=c.getContext("2d");
- if(designImage) ctx.drawImage(designImage,250,220,524,470);
- const text=document.getElementById("textInput").value;
- if(text){
-   ctx.font="bold 80px Arial";
-   ctx.textAlign="center";
-   ctx.fillStyle=document.getElementById("textColor").value;
-   ctx.fillText(text,512,820);
- }
- const texture=new THREE.CanvasTexture(c);
- texture.colorSpace=THREE.SRGBColorSpace;
- material.map=texture;
- material.needsUpdate=true;
-}
+    renderer.setPixelRatio(
+        window.devicePixelRatio
+    );
 
-document.getElementById("imageUpload").addEventListener("change",e=>{
- const file=e.target.files[0];
- if(!file)return;
- const reader=new FileReader();
- reader.onload=ev=>{
-   const img=new Image();
-   img.onload=()=>{designImage=img;updateDesign()};
-   img.src=ev.target.result;
- };
- reader.readAsDataURL(file);
-});
+    renderer.setSize(
+        canvas.clientWidth,
+        canvas.clientHeight
+    );
 
-document.getElementById("textInput").addEventListener("input",updateDesign);
-document.getElementById("textColor").addEventListener("input",updateDesign);
 
-function changeShirtColor(color){material.color.set(color)}
-function removeImage(){designImage=null;document.getElementById("imageUpload").value="";updateDesign()}
-function frontView(){shirtGroup.rotation.y=0}
-function backView(){shirtGroup.rotation.y=Math.PI}
-function resetView(){shirtGroup.rotation.y=0;camera.position.set(0,1,5);controls.target.set(0,0,0);controls.update()}
-function selectSize(button){
- document.querySelectorAll(".size").forEach(b=>b.classList.remove("active"));
- button.classList.add("active");
-}
-function addCart(){
- const name=document.getElementById("customerName").value.trim();
- const size=document.querySelector(".size.active");
- if(!name){alert("Vui lòng nhập tên khách hàng!");return}
- if(!size){alert("Vui lòng chọn size!");return}
- alert("Đã thêm sản phẩm vào giỏ hàng!\\n\\nKhách hàng: "+name+"\\nSize: "+size.innerText+"\\nGiá: 199.000đ");
-}
-window.addEventListener("resize",resize);
+    /* LIGHT */
 
-function animate(){
- requestAnimationFrame(animate);
- controls.update();
- renderer.render(scene,camera);
-}
-animate();
+    const ambientLight =
+        new THREE.AmbientLight(
+            0xffffff,
+            2
+        );
+
+    scene.add(ambientLight);
+
+
+    const directionalLight =
+        new THREE.DirectionalLight(
+            0xffffff,
+            3
+        );
+
+    directionalLight.position.set(
+        3,
+        5,
+        5
+    );
+
+    scene.add(directionalLight);
+
+
+    /* =========================
+       ÁO 3D
+    ========================= */
+
+    const shirtGroup =
+        new THREE.Group();
+
+    scene.add(shirtGroup);
+
+
+    /*
+       Thân áo
+    */
+
+    const bodyGeometry =
+        new THREE.BoxGeometry(
+            2.5,
+            3,
+            0.45
+        );
+
+    const shirtMaterial =
+        new THREE.MeshStandardMaterial({
+            color: 0xffffff,
+            roughness: 0.8
+        });
+
+    const body =
+        new THREE.Mesh(
+            bodyGeometry,
+            shirtMaterial
+        );
+
+    body.position.y = 0;
+
+    shirtGroup.add(body);
+
+
+    /*
+       Tay áo trái
+    */
+
+    const sleeveGeometry =
+        new THREE.BoxGeometry(
+            1.2,
+            1.6,
+            0.45
+        );
+
+
+    const leftSleeve =
+        new THREE.Mesh(
+            sleeveGeometry,
+            shirtMaterial
+        );
+
+    leftSleeve.position.set(
+        -1.65,
+        0.55,
+        0
+    );
+
+    leftSleeve.rotation.z =
+        -0.35;
+
+    shirtGroup.add(leftSleeve);
+
+
+    /*
+       Tay áo phải
+    */
+
+    const rightSleeve =
+        new THREE.Mesh(
+            sleeveGeometry,
+            shirtMaterial
+        );
+
+    rightSleeve.position.set(
+        1.65,
+        0.55,
+        0
+    );
+
+    rightSleeve.rotation.z =
+        0.35;
+
+    shirtGroup.add(rightSleeve);
+
+
+    /* =========================
+       CỔ ÁO
+    ========================= */
+
+    const collarGeometry =
+        new THREE.TorusGeometry(
+            0.38,
+            0.08,
+            16,
+            32
+        );
+
+    const collar =
+        new THREE.Mesh(
+            collarGeometry,
+            new THREE.MeshStandardMaterial({
+                color: 0xdddddd
+            })
+        );
+
+    collar.rotation.x =
+        Math.PI / 2;
+
+    collar.position.y =
+        1.2;
+
+    collar.position.z =
+        0.25;
+
+    shirtGroup.add(collar);
+
+
+    /* =========================
+       ORBIT CONTROLS
+    ========================= */
+
+    const controls =
+        new THREE.OrbitControls(
+            camera,
+            renderer.domElement
+        );
+
+    controls.enableDamping = true;
+
+    controls.enablePan = false;
+
+    controls.minDistance = 3;
+
+    controls.maxDistance = 8;
+
+
+    /* =========================
+       TEXTURE
+    ========================= */
+
+    let designTexture = null;
+
+
+    function createDesignTexture() {
+
+        const canvas2 =
+            document.createElement("canvas");
+
+        canvas2.width = 1024;
+        canvas2.height = 1024;
+
+        const ctx =
+            canvas2.getContext("2d");
+
+        ctx.clearRect(
+            0,
+            0,
+            1024,
+            1024
+        );
+
+        /*
+           ẢNH
+        */
+
+        if (designTexture) {
+
+            const image =
+                designTexture.image;
+
+            ctx.drawImage(
+                image,
+                260,
+                300,
+                500,
+                400
+            );
+
+        }
+
+
+        /*
+           CHỮ
+        */
+
+        const text =
+            document.getElementById(
+                "textInput"
+            ).value;
+
+        if (text) {
+
+            ctx.font =
+                "bold 90px Arial";
+
+            ctx.textAlign =
+                "center";
+
+            ctx.fillStyle =
+                document.getElementById(
+                    "textColor"
+                ).value;
+
+            ctx.fillText(
+                text,
+                512,
+                820
+            );
+
+        }
+
+
+        const texture =
+            new THREE.CanvasTexture(
+                canvas2
+            );
+
+        texture.colorSpace =
+            THREE.SRGBColorSpace;
+
+        return texture;
+
+    }
+
+
+    function updateDesign() {
+
+        const texture =
+            createDesignTexture();
+
+        body.material.map =
+            texture;
+
+        body.material.needsUpdate =
+            true;
+
+    }
+
+
+    /* =========================
+       UPLOAD ẢNH
+    ========================= */
+
+    document
+        .getElementById("imageUpload")
+        .addEventListener(
+            "change",
+            function(event) {
+
+                const file =
+                    event.target.files[0];
+
+                if (!file) return;
+
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    function(e) {
+
+                        const loader =
+                            new THREE.TextureLoader();
+
+                        loader.load(
+                            e.target.result,
+                            function(texture) {
+
+                                texture.colorSpace =
+                                    THREE.SRGBColorSpace;
+
+                                designTexture =
+                                    texture;
+
+                                updateDesign();
+
+                            }
+                        );
+
+                    };
+
+                reader.readAsDataURL(file);
+
+            }
+        );
+
+
+    /* =========================
+       CHỮ
+    ========================= */
+
+    document
+        .getElementById("textInput")
+        .addEventListener(
+            "input",
+            updateDesign
+        );
+
+
+    document
+        .getElementById("textColor")
+        .addEventListener(
+            "input",
+            updateDesign
+        );
+
+
+    /* =========================
+       ĐỔI MÀU ÁO
+    ========================= */
+
+    function changeShirtColor(color) {
+
+        shirtMaterial.color.set(color);
+
+    }
+
+
+    /* =========================
+       XÓA ẢNH
+    ========================= */
+
+    function removeImage() {
+
+        designTexture = null;
+
+        document
+            .getElementById("imageUpload")
+            .value = "";
+
+        updateDesign();
+
+    }
+
+
+    /* =========================
+       GÓC NHÌN
+    ========================= */
+
+    function frontView() {
+
+        shirtGroup.rotation.y =
+            0;
+
+    }
+
+
+    function backView() {
+
+        shirtGroup.rotation.y =
+            Math.PI;
+
+    }
+
+
+    function resetView() {
+
+        shirtGroup.rotation.y =
+            0;
+
+        camera.position.set(
+            0,
+            1,
+            5
+        );
+
+    }
+
+
+    /* =========================
+       SIZE
+    ========================= */
+
+    function selectSize(button) {
+
+        document
+            .querySelectorAll(".size")
+            .forEach(
+                function(btn) {
+
+                    btn.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+        button.classList.add(
+            "active"
+        );
+
+    }
+
+
+    /* =========================
+       GIỎ HÀNG
+    ========================= */
+
+    function addCart() {
+
+        const name =
+            document.getElementById(
+                "customerName"
+            ).value;
+
+        const size =
+            document.querySelector(
+                ".size.active"
+            );
+
+
+        if (!name) {
+
+            alert(
+                "Vui lòng nhập tên khách hàng!"
+            );
+
+            return;
+
+        }
+
+
+        if (!size) {
+
+            alert(
+                "Vui lòng chọn size!"
+            );
+
+            return;
+
+        }
+
+
+        alert(
+            "Đã thêm sản phẩm vào giỏ hàng!\n\n" +
+            "Khách hàng: " + name +
+            "\nSize: " + size.innerText +
+            "\nGiá: 199.000đ"
+        );
+
+    }
+
+
+    /* =========================
+       RESIZE
+    ========================= */
+
+    window.addEventListener(
+        "resize",
+        function() {
+
+            camera.aspect =
+                canvas.clientWidth /
+                canvas.clientHeight;
+
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(
+                canvas.clientWidth,
+                canvas.clientHeight
+            );
+
+        }
+    );
+
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    function animate() {
+
+        requestAnimationFrame(
+            animate
+        );
+
+        controls.update();
+
+        renderer.render(
+            scene,
+            camera
+        );
+
+    }
+
+    animate();
+
 </script>
+
 </body>
 </html>
+```
